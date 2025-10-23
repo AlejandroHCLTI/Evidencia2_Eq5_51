@@ -1,0 +1,78 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+  background-color: #fff; /* fondo blanco */
+  color: #c00; /* texto rojo principal */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Encabezado */
+header {
+  background-color: #c00; /* rojo intenso */
+  color: #fff; /* texto blanco */
+  padding: 40px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2rem;
+}
+
+/* Main - Lista de objetos */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+main ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 180px);
+  gap: 20px;
+}
+
+main ul li a {
+  display: block;
+  padding: 25px;
+  background-color: #fff; /* fondo blanco */
+  color: #c00; /* texto rojo */
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid #c00;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+main ul li a:hover {
+  background-color: #c00; /* fondo rojo al pasar el mouse */
+  color: #fff; /* texto blanco al pasar el mouse */
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Pie de página */
+footer {
+  background-color: #c00;
+  color: #fff;
+  padding: 20px;
+  font-size: 0.9rem;
+  box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+}
