@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1> estructura for </h1>
+    <form action="">
+        <input type="number" name="txtNumber" id="txtNumber">
+        <button type="button" onclick="tabla()">Mostrar tabla</button>
+        <div id="resultado"></div>
+   
+    </form>
+    
+    <script type="text/JavaScript">
+        function tabla() {
+            let num = parseInt(document.getElementById("txtNumber").value);
+            let lista = '<table border=1><tr>';
+            let resultado;
+
+        for(let i = 1; i <= 10; i++){
+            resultado = num * i;
+            lista += '<tr><td>'+ num + 'x'+ i + '</td><td>' + resultado + '</td></tr>';
+        }
+
+        lista += '</table></tr>';
+        document.getElementById('resultado').innerHTML = lista;
+        }
+    </script>
+</body>
+</html>
