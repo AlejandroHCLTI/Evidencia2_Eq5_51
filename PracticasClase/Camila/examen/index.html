@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examen</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        transition: background 0.5s;
+      }
+      img {
+        display: none;
+        max-width: 300px;
+        margin-top: 20px;
+      }
+      button {
+        font-size: 16px;
+      }
+      .animated-background {
+        background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <h1>Examen</h1>
+      <script src="assets/js/evaluacion.js"></script>
+      <button onclick="modoOscuro()">Modo Oscuro</button>
+      <script src="assets/js/modo.js"></script>
+      <script src="assets/js/resaltar.js"></script>
+      <input id="txtcolor" type="color" name="txtcolor" />
+      <button type="button" onclick="Cambiarcolor()">Cambiar color</button>
+      <input id="txtcolorpreguntas" type="color" name="txtcolorpreguntas" />
+      <button type="button" onclick="resaltar()">Resaltar preguntas</button>
+      <button onclick="toggleImage()">Mostrar/Ocultar Imagen</button>
+      <button onclick="toggleBackground()">
+        Activar/Desactivar Fondo Animado
+      </button>
+      <p>Selecciona la respuesta correcta</p>
+
+      <fieldset>
+        <legend class="pregunta">Datos personales</legend>
+        <label for="txtmatricula">Matricula</label>
+        <input type="text" name="txtmatricula" id="txtmatricula" required />
+        <label for="txtNombre">Nombre</label>
+        <input type="text" name="txtNombre" id="txtNombre" required />
+        <label for="txtGrupo">Grupo</label>
+        <input type="text" name="txtGrupo" id="txtGrupo" required />
+      </fieldset>
+      <fieldset>
+        <legend class="pregunta">Pregunta 1: Quién es el lider de BTS?</legend>
+        <label><input type="radio" name="p1" id="rdP1A" value="a" />RM</label>
+        <label><input type="radio" name="p1" id="rdP1B" value="b" />Jk</label>
+        <label><input type="radio" name="p1" id="rdP1C" value="c" />V</label>
+        <label
+          ><input type="radio" name="p1" id="rdP1D" value="d" />Jhope</label
+        >
+      </fieldset>
+      <fieldset>
+        <legend class="pregunta">
+          Pregunta 2: Quién es el main dancer de BTS?
+        </legend>
+        <label
+          ><input type="radio" name="p2" id="rdP2A" value="a" />Jimin</label
+        >
+        <label><input type="radio" name="p2" id="rdP2B" value="b" />Jin</label>
+        <label><input type="radio" name="p2" id="rdP2C" value="c" />Suga</label>
+        <label
+          ><input type="radio" name="p2" id="rdP2D" value="d" />Jhope</label
+        >
+      </fieldset>
+      <fieldset>
+        <legend class="pregunta">Pregunta 3: Quién es el Visual de BTS?</legend>
+        <label><input type="radio" name="p3" id="rdP3A" value="a" />RM</label>
+        <label><input type="radio" name="p3" id="rdP3B" value="b" />Jin</label>
+        <label><input type="radio" name="p3" id="rdP3C" value="c" />V</label>
+        <label><input type="radio" name="p3" id="rdP3D" value="d" />Suga</label>
+      </fieldset>
+      <fieldset>
+        <legend class="pregunta">
+          Pregunta 4: Quién es el lead rapper de BTS?
+        </legend>
+        <label><input type="radio" name="p4" id="rdP4A" value="a" />RM</label>
+        <label><input type="radio" name="p4" id="rdP4B" value="b" />Suga</label>
+        <label><input type="radio" name="p4" id="rdP4C" value="c" />Jk</label>
+        <label
+          ><input type="radio" name="p4" id="rdP4D" value="d" />Jhope</label
+        >
+      </fieldset>
+      <br />
+      <button type="reset">Limpiar</button>
+      <button type="submit" onclick="evaluarExamen()">Enviar</button>
+
+      <br />
+      <img
+        id="miImagen"
+        src="https://i.pinimg.com/736x/1e/b3/af/1eb3af059f59ca3b4e8a736729b9f372.jpg"
+        alt="cherguevara"
+      />
+
+      <script>
+        function toggleImage() {
+          const img = document.getElementById("miImagen");
+          if (img.style.display === "none") {
+            img.style.display = "block"; // Mostrar
+          } else {
+            img.style.display = "none"; // Ocultar
+          }
+        }
+
+        function toggleBackground() {
+          document.body.classList.toggle("animated-background");
+        }
+      </script>
+    </form>
+  </body>
+</html>
