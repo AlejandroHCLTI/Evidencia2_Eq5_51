@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="resta/resta.js"> </script>
+</head>
+
+<body>
+    <main class="container border p-4 mt-5 rounded">
+        <h1>Suma de dos numeros</h1>
+        <form action="" autocomplete="off">
+            <section class="row">
+                <div class="col-4">
+                    <label for="Txtnumero1">numero 1</label>
+                    <input id="txtnumero1" type="number" name="txtnumero1" placeholder="obligatorio"
+                        class="form-cpmtrol"></input>
+                </div>
+                <div class="col-4">
+                    <label for="Txtnumero2">numero 2</label>
+                    <input id="txtnumero2" type="number" name="txtnumero2" placeholder="obligatorio"
+                        class="form-control"></input>
+
+                </div>
+                <div class="col-4">
+                    <button type="button" onclick="sumarNumeros()">ACEPTAR</button>
+                    <button type="button" onclick="restarNumeros()">Restar</button>
+                    <input type="reset" value="lim">
+                </div>
+
+            </section>
+            <script type="text/javascript">
+                function sumarNumeros() {
+                    // Declaración de variables
+                    let numero1, numero2, resultado;
+                    // Obtener los valores y asignarlos a las variables
+                    numero1 = parseFloat(document.getElementById('txtnumero1').value);
+                    numero2 = parseFloat(document.getElementById('txtnumero2').value);
+                    resultado = numero1 + numero2;
+                    // Imprimir el resultado
+                    alert('El resultado es: ' + resultado);
+                }
+            </script>
+        </form>
+
+    </main>|
+
+</body>
+
+</html>

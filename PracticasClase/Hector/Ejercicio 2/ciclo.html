@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Estructura for</h1>
+    <form action="">
+        <input id="txtNumero" type="number" name="txtNumero">
+        <button type="button" onclick="tabla()">MOSTRAR TABLA</button>
+        <div id="Resultado"></div>
+    </form>
+    
+    <script type="text/javascript">
+    function tabla(){
+        let num = parseInt(document.getElementById("txtNumero").value);
+        let lista = '<table border=1><tr>';
+        let Resultado;
+
+        for(let i = 1; i <= 10; i++){
+            Resultado = num * i;
+            lista += '<tr><td>' + num + ' x ' + i + '</td><td>' + Resultado + '</td></tr>';
+        }
+
+        lista += '</table></tr>';
+        document.getElementById("Resultado").innerHTML = lista;
+    }
+</script>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="calculadora ejercicio9/calculadora.js"></script>
+    <title>Calculadora de Promedio y Calificaciones</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 1rem; max-width: 720px; margin: auto; }
+        button { margin: 0.25rem; }
+        #lista { margin-top: 0.5rem; }
+        .nota { display:inline-block; background:#eef; padding:0.25rem 0.5rem; margin:0.2rem; border-radius:4px; }
+        #resultado { margin-top:1rem; font-weight:600; }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Promedio</h1>
+    <p>Use "Agregar calificaciones" para ingresar notas (puede ingresar tantas como quiera). Deje vacío o pulse Cancelar para terminar.</p>
+
+    <div>
+        <button type="button" id="btnAgregar">Agregar calificaciones</button>
+        <button type="button" id="btnCalcular">Calcular promedio</button>
+        <button type="button" id="btnReiniciar">Reiniciar</button>
+    </div>
+
+    <div id="lista" aria-live="polite"></div>
+    <div id="resultado" aria-live="polite"></div>
+
+    
+</body>
+</html>

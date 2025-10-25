@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <title>Examen</title>
+
+    
+    <script src="assets/js/evaluacion.js"></script>
+    <script src="assets/js/modo.js"></script>
+    <script src="assets/js/resaltar.js"></script>
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(-45deg, #e0f7fa, #fce4ec, #f3e5f5, #e8f5e9);
+    background-size: 400% 400%;
+    animation: fondoAnimado 15s ease infinite;
+  }
+
+  @keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  button {
+    background-color: #76aee1;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    margin: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #4f91c3;
+    transform: scale(1.05);
+  }
+
+  /* Agrupación de botones e imagen */
+  .botones-con-imagen {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* Imagen ajustada */
+  #elementoToggle {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Loader */
+  #loader {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+  }
+
+  .loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #76aee1;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+
+
+<body>
+    <form action="">
+
+        <h1>Examen</h1>
+        <p>Seleccione la respuesta correcta</p>
+        <button type="button" onclick="ModoOscuro()">Modo Oscuro</button> 
+        <input id="txtcolor" type="color" name="txtcolor">&nbsp;
+        <button type="button" onclick="resaltar()">Resaltar preguntas</button>
+        <input id="txtcolorp" type="color" name="txtcolorp">
+
+        <br>
+        <br>
+
+        <fieldset>
+            <legend class="pregunta" >Datos Personales</legend>
+            <label for="txtMatricula">Matricula:</label>
+            <input id="txtMatricula" type="number" name="txtMatricula" required >
+            <label for="txtNombre">Nombre:</label>  
+            <input id="txtNombre" type="text" name="txtNombre" required >
+            <label for="txtGrupo">Grupo:</label>
+            <input id="txtGrupo" type="text" name="txtGrupo" required >
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend class="pregunta">Pregunta Numero 1: ¿Quien es mas feka? </legend>
+            <label><input id="rdP1A" type="radio" name="p1" value="a" >Slix</label>
+            <label><input id="rdP1A" type="radio" name="p1" value="b" >Samu</label>
+            <label><input id="rdP1A" type="radio" name="p1" value="c" >Alejandro</label>
+            <label><input id="rdP1A" type="radio" name="p1" value="d" >Jasso</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend class="pregunta">Pregunta Numero 2: ¿Cual es el mejor color? </legend>
+            <label><input id="rdP2A" type="radio" name="p2" value="a" >Azul</label>
+            <label><input id="rdP2A" type="radio" name="p2" value="b" >Negro</label>
+            <label><input id="rdP2A" type="radio" name="p2" value="c" >Rojo</label>
+            <label><input id="rdP2A" type="radio" name="p2" value="d" >Morado</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend class="pregunta">Pregunta Numero 3: ¿Que dia es hoy? </legend>
+            <label><input id="rdP3A" type="radio" name="p3" value="a" >Lunes</label>
+            <label><input id="rdP3A" type="radio" name="p3" value="b" >Martes</label>
+            <label><input id="rdP3A" type="radio" name="p3" value="c" >Miercoles</label>
+            <label><input id="rdP3A" type="radio" name="p3" value="d" >Jueves</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend class="pregunta">Pregunta Numero 4: ¿Cuanto es la suma de 10 + 90? </legend>
+            <label><input id="rdP4A" type="radio" name="p4" value="a" >80</label>
+            <label><input id="rdP4A" type="radio" name="p4" value="b" >70</label>
+            <label><input id="rdP4A" type="radio" name="p4" value="c" >100</label>
+            <label><input id="rdP4A" type="radio" name="p4" value="d" >90</label>
+        </fieldset>
+
+        <br>
+        <button type="submit" onclick="evaluar()">Enviar</button>
+        <button type="reset">Limpiar</button>
+        <button type="button" onclick="toggleFondoAnimado()">Activar/Desactivar Fondo Animado</button>
+        <button id="btnToggle">Ocultar</button>
+        <img id="elementoToggle" src="https://fuelcarmagazine.com/wp-content/uploads/2020/11/%C2%A9-Porsche-4.jpg" alt="Imagen">
+        
+        
+
+
+        <!-- Loader -->
+        <div id="loader">
+            <div class="loader"></div>
+        </div>
+    </form>
+
+    <script>
+    (() => {
+        'use strict';
+
+        function Resaltar() {
+            const preguntas = document.getElementsByClassName('pregunta');
+            for (let p of preguntas) {
+                p.style.color = 'yellow';
+                p.style.fontWeight = 'bold';
+            }
+        }
+
+        function activarCambioTamano() {
+            const preguntas = document.getElementsByClassName('pregunta');
+            if (!preguntas.length) return;
+
+            function toggleSize(e) {
+                const el = e.currentTarget;
+                if (!el.dataset.originalSize) {
+                    const cs = window.getComputedStyle(el);
+                    el.dataset.originalSize = cs.fontSize || '16px';
+                }
+                const num = parseFloat(el.dataset.originalSize) || 16;
+                const unit = el.dataset.originalSize.replace(num, '') || 'px';
+                const newSize = el.dataset.toggled === '1' ? el.dataset.originalSize : (num * 1.4) + unit;
+                el.style.fontSize = newSize;
+                el.dataset.toggled = el.dataset.toggled === '1' ? '0' : '1';
+            }
+
+            for (let el of preguntas) {
+                el.addEventListener('click', toggleSize);
+            }
+        }
+
+        function activarOcultarMostrar() {
+            const btn = document.getElementById('btnToggle');
+            const el = document.getElementById('elementoToggle');
+            if (!btn || !el) return;
+
+            const isHidden = window.getComputedStyle(el).display === 'none';
+            btn.textContent = isHidden ? 'Mostrar' : 'Ocultar';
+
+            btn.addEventListener('click', () => {
+                const currentlyHidden = window.getComputedStyle(el).display === 'none';
+                el.style.display = currentlyHidden ? 'block' : 'none';
+                btn.textContent = currentlyHidden ? 'Ocultar' : 'Mostrar';
+            });
+        }
+
+        function toggleFondoAnimado() {
+            const body = document.body;
+            const animacionActual = body.style.animation || window.getComputedStyle(body).animationName;
+
+            if (animacionActual === 'fondoAnimado') {
+                body.style.animation = 'none';
+            } else {
+                body.style.animation = 'fondoAnimado 15s ease infinite';
+            }
+        }
+
+        function mostrarLoader() {
+            const loader = document.getElementById('loader');
+            if (loader) loader.style.display = 'flex';
+        }
+
+        function ocultarLoader() {
+            const loader = document.getElementById('loader');
+            if (loader) loader.style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            mostrarLoader();
+            requestAnimationFrame(() => {
+                try { Resaltar(); } catch (e) { console.error(e); }
+                try { activarCambioTamano(); } catch (e) { console.error(e); }
+                try { activarOcultarMostrar(); } catch (e) { console.error(e); }
+                setTimeout(ocultarLoader, 300);
+            });
+        });
+    })();
+</script>
+</body>
+</html>

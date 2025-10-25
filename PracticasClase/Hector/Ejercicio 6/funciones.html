@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones </title>
+</head>
+<body>
+    <h3>Funciones Predeterminadas</h3>
+    <script type="text/JavaScript">
+        document.write('Función del abs del número -10 es <mark>'+ Math.abs(-10) + '</mark> el cual es el valor positivo del numero');
+        document.write('<br>Función del abs del número 3.1416 es <mark>'+ Math.ceil(3.1416) + '</mark> el cual es el valor redondeado hacia arriba del numero');
+        document.write('<br>Función <b>Math.random()</b>: <mark>' + Math.random() + '</mark> genera un número aleatorio entre 0 y 1.');
+
+        document.write('<br>Función <b>Math.max()</b>: <mark>' + Math.max(5, 10, 25, 3) + '</mark> devuelve el número máximo de la lista.');
+        document.write('<br>Función <b>Math.min()</b>: <mark>' + Math.min(5, 10, 25, 3) + '</mark> devuelve el número mínimo de la lista.');
+
+        document.write('<br>Función <b>Number.isNaN()</b>: <mark>' + Number.isNaN("hola") + '</mark> verifica si el valor no es un número (NaN).');
+
+        let numero = 3.1416;
+        document.write('<br>Función <b>toFixed(2)</b>: <mark>' + numero.toFixed(2) + '</mark> muestra el número con solo dos decimales.');
+
+        let fecha = new Date();
+        document.write('<br>Función <b>Date()</b>: <mark>' + fecha + '</mark> obtiene la fecha y hora actual.');
+
+       let texto = "Programación en JavaScript";
+        document.write('<br>Propiedad <b>String.length</b>: <mark>' + texto.length + '</mark> muestra la longitud de la cadena.');
+        document.write('<br>Función <b>String.toUpperCase()</b>: <mark>' + texto.toUpperCase() + '</mark> convierte a mayúsculas.');
+        document.write('<br>Función <b>String.toLowerCase()</b>: <mark>' + texto.toLowerCase() + '</mark> convierte a minúsculas.');
+
+        document.write('<br>Función <b>Math.floor(3.1416)</b>: <mark>' + Math.floor(3.1416) + '</mark> redondea hacia abajo al entero más cercano.');
+
+        // extra
+        document.write('<br>Función <b>Math.pow(2, 3)</b>: <mark>' + Math.pow(2, 3) + '</mark> eleva un número a una potencia (2³ = 8).');
+        document.write('<br>Función <b>Math.sqrt(49)</b>: <mark>' + Math.sqrt(49) + '</mark> devuelve la raíz cuadrada de un número.');
+
+    </script>
+    
+</body>
+</html>
