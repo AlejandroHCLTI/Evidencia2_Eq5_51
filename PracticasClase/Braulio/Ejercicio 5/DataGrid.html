@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simular DataGridView</title>
+</head>
+<body>
+    <h3>Base de datos</h3>
+    <form action="">
+        <input type="number" id="txtNumeroRegistros" placeholder="Número de empleados">
+        <button type="button" onclick="registros()">Mostrar tabla</button>
+        <div id="cantidad"></div>
+    </form>
+
+    <script>
+        function registros() {
+            let numeroRegistros = document.getElementById('txtNumeroRegistros').value;
+            let grid = '<table border="1">' +
+                '<tr>' +
+                    '<th>Id</th>' +
+                    '<th>Nombre</th>' +
+                    '<th></th>' +
+                    '<th></th>' +
+                '</tr>';
+
+            for (let i = 1; i <= numeroRegistros; i++) {
+                let nombre = prompt('Ingresa un nombre de empleado');
+
+                grid += '<tr id="fila' + i + '">' +
+                            '<td>' + 
+                                i + 
+                            '</td>' +
+                            '<td id="nombre' + i + '">' + nombre + '</td>' +
+                            '<td><button type="button" onclick="editar(' + i + ')">Editar</button></td>' +
+                            '<td><button type="button" onclick="eliminar(' + i + ')">Eliminar</button></td>' +
+                        '</tr>';
+            }
+
+            grid += '</table>';
+            document.getElementById('cantidad').innerHTML = grid;
+        }
+
+        function editar(id) {
+            let nuevoNombre = prompt('Nuevo nombre:');
+            if (nuevoNombre) {
+                document.getElementById('nombre' + id).innerText = nuevoNombre;
+            }
+        }
+
+        function eliminar(id) {
+            let fila = document.getElementById('fila' + id);
+            fila.remove();
+        }
+    </script>
+</body>
+</html>
+
