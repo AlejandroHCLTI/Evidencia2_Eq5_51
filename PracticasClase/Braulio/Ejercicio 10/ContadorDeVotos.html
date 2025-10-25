@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Contador de Votos</title>
+  </head>
+  <body>
+    <h1>Contador de votos</h1>
+    <p>Vota por tu candidato (1: Hiram, 2: Ángel, 3: Omar). Ingresa 0 para finalizar.</p>
+    <input type="number" id="voto" min="0">
+    <button onclick="votar()">Votar</button>
+    <div id="mensaje"></div>
+    
+    <script>
+      let votos = { Hiram: 0, Ángel: 0, Omar: 0, Nulos: 0 };
+      let activo = true;
+
+    function votar() {
+        const voto = parseInt(document.getElementById("voto").value);
+        const mensaje = document.getElementById("mensaje");
+        let candidato = ""; 
+
+        if (!activo) return mensaje.textContent = "La votación ya terminó.";
+        if (isNaN(voto) || voto < 0) return mensaje.textContent = "Ingresa un número válido.";
+
+        if (voto === 0) return finalizar();
+
+        if (voto === 1) { votos.Hiram++; candidato = "para Hiram"; }
+        else if (voto === 2) { votos.Ángel++; candidato = "para Ángel"; }
+        else if (voto === 3) { votos.Omar++; candidato = "para Omar"; }
+        else { votos.Nulos++; candidato = "es nulo"; }
+
+        mensaje.textContent = "Voto registrado " + candidato + ".";
+        document.getElementById("voto").value = "";
+    }
+
+
+    function finalizar() {
+      const mensaje = document.getElementById("mensaje");
+      activo = false;
+
+      const total = votos.Hiram + votos.Ángel + votos.Omar + votos.Nulos;
+      const max = Math.max(votos.Hiram, votos.Ángel, votos.Omar);
+      const ganadores = Object.keys(votos).filter(c => votos[c] === max && c !== "Nulos");
+
+      let texto = `Resultados finales: Hiram: ${votos.Hiram}, Ángel: ${votos.Ángel}, Omar: ${votos.Omar}, Votos nulos: ${votos.Nulos}, Total: ${total}, `;
+
+      if (ganadores.length === 1) {
+        const ganador = ganadores[0];
+        const porcentaje = ((max / total) * 100).toFixed(2);
+        texto += `Ganador: ${ganador}, Porcentaje de aceptación: ${porcentaje}%`;
+      } else {
+        texto += `Empate entre los candidatos ${ganadores.join(" y ")}.`;
+        activo = true;
+        alert("Empate detectado. Ingresa un voto adicional.");
+      }
+
+      mensaje.textContent = texto;
+    }
+  </script>
+</body>
+</html>
