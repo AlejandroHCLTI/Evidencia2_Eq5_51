@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen</title>
+    <script src="evaluacion.js"></script>
+    <script src="modooscuro.js"></script>
+    <script src="resaltar.js" defer></script>
+
+<style>
+    /* === Loader === */
+    #loader {
+    position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+        }
+    .loader {
+      border: 8px solid #eee;
+      border-top: 8px solid #23a6d5;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* === Fondo animado === */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(-40deg, hsl(269, 100%, 81%), #8eb7fd, #fdc188, #90ffe5);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: #222;
+      transition: background-color 0.4s, color 0.4s;
+      min-height: 100vh;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* === Botones === */
+    button {
+      background: #000000;
+      border: none;
+      color: rgb(255, 255, 255);
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #ffe70b;
+      transform: scale(1.05);
+    }
+
+
+    /* Preguntas */
+    .pregunta {
+        margin: 15px 0;
+        font-size: 18px;
+        cursor: pointer;
+        transition: font-size 0.4s, color 0.4s;
+    }
+
+    /* Botón ocultar/mostrar */
+    #btnToggle {
+        margin: 10px 0;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    #elementoToggle {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 350px;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Examen</h1>
+    <p>Lea las preguntas y seleccione la respuesta correcta</p>
+    <button onclick="ModoOscuro()">Modo Oscuro</button>
+    <button onclick="Resaltar()">Resaltar preguntas</button>
+
+    <!-- Color de fondo -->
+    <input type="color" id="colorPicker" style="display:none;">
+    <button type="button" onclick="abrirPaleta()">Fondo Animado</button>
+
+    <!-- Color de preguntas -->
+    <input type="color" id="colorPickerPregunta" style="display:none;">
+    <button type="button" onclick="abrirPaletaPregunta()">Cambiar el color de las preguntas</button>
+
+    <form action="" onsubmit="return false;">
+        <fieldset>
+            <legend class="pregunta">Datos Personales</legend>
+            <label for="txtMatricula">Matricula</label>
+            <input id="txtMatricula" type="number">
+            <label for="txtnombre">Nombre</label>
+            <input id="txtnombre" type="text">
+            <label for="txtgpo">Grupo</label>
+            <input id="txtgpo" type="number">
+        </fieldset>
+
+        <!-- Preguntas -->
+        <fieldset>
+            <legend class="pregunta">Pregunta 1: ¿Cuanto es 2 + 2?</legend>
+            <label><input id="rdP1A" type="radio" name="p1" value="a">4</label>
+            <label><input id="rdP1B" type="radio" name="p1" value="b">5</label>
+            <label><input id="rdP1C" type="radio" name="p1" value="c">Pez</label>
+            <label><input id="rdP1D" type="radio" name="p1" value="d">uhhh idk</label>
+        </fieldset>
+        <fieldset>
+            <legend class="pregunta">Pregunta 2: ¿Cual es el lugar mas frio de la tierra? </legend>
+            <label><input id="rdP2A" type="radio" name="p2" value="a">Russia</label>
+            <label><input id="rdP2B" type="radio" name="p2" value="b">Monterrey</label>
+            <label><input id="rdP2C" type="radio" name="p2" value="c">Disneyland</label>
+            <label><input id="rdP2D" type="radio" name="p2" value="d">Antartida</label>
+        </fieldset>
+        <fieldset>
+            <legend class="pregunta">Pregunta 3: ¿Cual de estas peliculas es canon en el DCU?</legend>
+            <label><input id="rdP3A" type="radio" name="p3" value="a">Man of Steel</label>
+            <label><input id="rdP3B" type="radio" name="p3" value="b">Black Adam</label>
+            <label><input id="rdP3C" type="radio" name="p3" value="c">Superman (2025)</label>
+            <label><input id="rdP3D" type="radio" name="p3" value="d">Avengers: Doomsday</label>
+        </fieldset>
+        <fieldset>
+            <legend class="pregunta">Pregunta 4: ¿Que dia cae Navidad este año?</legend>
+            <label><input id="rdP4A" type="radio" name="p4" value="a">25/25/25</label>
+            <label><input id="rdP4B" type="radio" name="p4" value="b">25/12/25</label>
+            <label><input id="rdP4C" type="radio" name="p4" value="c">12/15/25</label>
+            <label><input id="rdP4D" type="radio" name="p4" value="d">25/12/15</label>
+        </fieldset>
+
+        <br>
+        <button type="submit" onclick="evaluarexamen()">Enviar</button>
+        <button type="reset">Limpiar</button>
+        <button type="button" onclick="toggleFondoAnimado()">Activar/Desactivar Fondo Animado</button>
+        <button id="btnToggle">Ocultar</button>
+        <img id="elementoToggle" src="https://as1.ftcdn.net/v2/jpg/06/07/84/96/1000_F_607849602_JE7KKnI0zY5O6lwtXIkiWxvQYf28RigA.jpg" alt="Imagen">
+        
+        
+
+
+        <!-- Loader -->
+        <div id="loader">
+            <div class="loader"></div>
+        </div>
+
+    </form>
+
+    <!-- Script para controlar loader y animaciones -->
+    <script>
+        (() => {
+            'use strict';
+
+            function Resaltar() {
+                const preguntas = document.getElementsByClassName('pregunta');
+                for (let p of preguntas) {
+                    p.style.color = 'yellow';
+                    p.style.fontWeight = 'bold';
+                }
+            }
+
+            function activarCambioTamano() {
+                const preguntas = document.getElementsByClassName('pregunta');
+                if (!preguntas.length) return;
+
+                function toggleSize(e) {
+                    const el = e.currentTarget;
+                    if (!el.dataset.originalSize) {
+                        const cs = window.getComputedStyle(el);
+                        el.dataset.originalSize = cs.fontSize || '16px';
+                    }
+                    const num = parseFloat(el.dataset.originalSize) || 16;
+                    const unit = el.dataset.originalSize.replace(num, '') || 'px';
+                    const newSize = el.dataset.toggled === '1' ? el.dataset.originalSize : (num * 1.4) + unit;
+                    el.style.fontSize = newSize;
+                    el.dataset.toggled = el.dataset.toggled === '1' ? '0' : '1';
+                }
+
+                for (let el of preguntas) {
+                    el.addEventListener('click', toggleSize);
+                }
+            }
+
+            function activarOcultarMostrar() {
+                const btn = document.getElementById('btnToggle');
+                const el = document.getElementById('elementoToggle');
+                if (!btn || !el) return;
+
+                const isHidden = window.getComputedStyle(el).display === 'none';
+                btn.textContent = isHidden ? 'Mostrar' : 'Ocultar';
+
+                btn.addEventListener('click', () => {
+                    const currentlyHidden = window.getComputedStyle(el).display === 'none';
+                    el.style.display = currentlyHidden ? 'block' : 'none';
+                    btn.textContent = currentlyHidden ? 'Ocultar' : 'Mostrar';
+                });
+            }
+
+            function mostrarLoader() {
+                const loader = document.getElementById('loader');
+                if (loader) loader.style.display = 'flex';
+            }
+
+            function ocultarLoader() {
+                const loader = document.getElementById('loader');
+                if (loader) loader.style.display = 'none';
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                mostrarLoader();
+                requestAnimationFrame(() => {
+                    try { Resaltar(); } catch (e) { console.error(e); }
+                    try { activarCambioTamano(); } catch (e) { console.error(e); }
+                    try { activarOcultarMostrar(); } catch (e) { console.error(e); }
+                    setTimeout(ocultarLoader, 300);
+                });
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
